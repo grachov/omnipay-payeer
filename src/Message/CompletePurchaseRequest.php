@@ -34,8 +34,6 @@ class CompletePurchaseRequest extends AbstractRequest
             throw new InvalidResponseException("Invalid m_sign");
         }
 
-        echo $this->httpRequest->request->get('m_orderid').'|success';
-
         return $this->httpRequest->request->all();
     }
 
