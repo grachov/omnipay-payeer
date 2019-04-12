@@ -64,6 +64,16 @@ class Gateway extends AbstractGateway
         return $this->setParameter('shop_secret', $value);
     }
 
+    public function getShopParamsSecret()
+    {
+        return $this->getParameter('shop_params_secret');
+    }
+
+    public function setShopParamsSecret($value)
+    {
+        return $this->setParameter('shop_params_secret', $value);
+    }
+
     public function getDefaultParameters()
     {
         return array(
@@ -72,6 +82,7 @@ class Gateway extends AbstractGateway
             'api_secret' => '',
             'shop_id' => '',
             'shop_secret' => '',
+			'shop_params_secret' => '',
         );
     }
 

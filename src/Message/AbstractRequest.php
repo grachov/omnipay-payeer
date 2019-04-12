@@ -45,6 +45,16 @@ abstract class AbstractRequest extends OmnipayRequest
         return $this->setParameter('shop_secret', $value);
     }
 
+    public function getShopParamsSecret()
+    {
+        return $this->getParameter('shop_params_secret');
+    }
+
+    public function setShopParamsSecret($value)
+    {
+        return $this->setParameter('shop_params_secret', $value);
+    }
+
     public function getApiId()
     {
         return $this->getParameter('api_id');
