@@ -8,10 +8,6 @@ class CompletePurchaseRequest extends AbstractRequest
 {
     public function getData()
     {
-        if ($this->httpRequest->request->get('m_curr') != $this->getCurrency()) {
-            throw new InvalidResponseException("Invalid m_curr:".$this->httpRequest->request->get('m_curr'));
-        }
-
         if ($this->httpRequest->request->get('m_status') != 'success') {
             throw new InvalidResponseException("Invalid m_status:".$this->httpRequest->request->get('m_status'));
         }
@@ -27,8 +23,11 @@ class CompletePurchaseRequest extends AbstractRequest
             $this->httpRequest->request->get('m_curr'),
             $this->httpRequest->request->get('m_desc'),
             $this->httpRequest->request->get('m_status'),
-            $this->getShopSecret(),
         ];
+		if ($this->httpRequest->request->get('m_params')) {
+			$arHash[] = $this->httpRequest->request->get('m_params');
+		}
+		$arHash[] = $this->getShopSecret();
         $sign_hash = strtoupper(hash('sha256', implode(':', $arHash)));
 
         if ($this->httpRequest->request->get('m_sign') != $sign_hash) {
